@@ -1,7 +1,7 @@
 import React from "react";
 
-function App() {
+const App: React.FC = () => {
   return <p>I AM HUNGRY</p>;
-}
+};
 
 export { App };
