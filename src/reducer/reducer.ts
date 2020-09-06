@@ -1,19 +1,18 @@
-import { ADD_RECIPES, ActionTypes } from "./actionTypes";
+import { SET_RECIPES, ActionTypes } from "./actionTypes";
 
-type GlobalState = {
-  recipes: object[];
+type Recipe = {
+  id: string;
+  imageUrl: string;
+  name: string;
 };
 
-const initialState: GlobalState = {
-  recipes: [],
+type State = {
+  recipes: Recipe[];
 };
 
-export const reducer = (
-  state = initialState,
-  action: ActionTypes
-): GlobalState => {
+export const reducer = (state: State, action: ActionTypes): State => {
   switch (action.type) {
-    case ADD_RECIPES:
+    case SET_RECIPES:
       return state;
     default:
       return state;

@@ -1,3 +1,7 @@
 import { createContext } from "react";
 
-export default createContext({});
+type Context = {
+  fetchRecipes?: () => Promise<void>;
+};
+
+export default createContext<Context>({});

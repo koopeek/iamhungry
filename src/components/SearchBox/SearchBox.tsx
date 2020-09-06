@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SelectField } from "../SelectField/SelectField";
 import { InputField } from "../InputField/InputField";
 import { diets, intolerances, mealTypes } from "../../constans";
+import Context from "../../context/context";
 import styles from "./SearchBox.module.scss";
 
 const SearchBox: React.FC = () => {
+  const { fetchRecipes } = useContext(Context);
+
   const [name, setName] = useState<string>("");
   const [diet, setDiet] = useState<string>("");
   const [intolerance, setIntolerance] = useState<string>("");
@@ -20,7 +23,7 @@ const SearchBox: React.FC = () => {
         <SelectField options={diets} handleChange={setDiet} />
         <SelectField options={intolerances} handleChange={setIntolerance} />
       </div>
-      <button className={styles.buttonSearch}>
+      <button className={styles.buttonSearch} onClick={fetchRecipes}>
         <div>Find meal</div>
       </button>
     </div>
