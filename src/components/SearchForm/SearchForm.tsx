@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "./Input/Input";
+import { FormInput } from "../FormInput/FormInput";
 import "./SearchForm.scss";
 
 const SearchForm: React.FC = () => {
@@ -8,10 +8,13 @@ const SearchForm: React.FC = () => {
   return (
     <form className="searchForm">
       <div className="searchForm__nameInput">
-        <Input
+        <FormInput
+          name="name"
+          type="text"
+          label="Meal name"
           placeholder="Enter meal name..."
           value={name}
-          handleChange={setName}
+          onChange={setName}
         />
       </div>
     </form>
