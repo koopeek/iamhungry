@@ -1,0 +1,13 @@
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 800px;
+  height: 200px;
+  margin-top: 50px;
+
+  &__nameInput {
+    width: 80%;
+  }
+}

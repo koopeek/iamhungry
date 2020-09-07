@@ -1,20 +1,22 @@
 import React from "react";
-import styles from "./InputField.module.scss";
+import "./Input.scss";
 
 type Props = {
+  value: string;
   placeholder?: string;
   handleChange: (value: string) => void;
 };
 
-const InputField: React.FC<Props> = ({ placeholder, handleChange }) => {
+const Input: React.FC<Props> = ({ value, handleChange, placeholder }) => {
   return (
     <input
       type="text"
+      className="input"
       placeholder={placeholder}
-      className={styles.inputField}
+      value={value}
       onChange={(e) => handleChange(e.target.value)}
     />
   );
 };
 
-export { InputField };
+export { Input };
