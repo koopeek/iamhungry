@@ -1,7 +1,11 @@
 import { createContext } from "react";
+import { Recipe } from "../types/types";
 
-type Context = {
-  fetchRecipes?: () => Promise<void>;
+type ContextProps = {
+  recipes: Recipe[];
+  fetchRecipes: () => Promise<void>;
 };
 
-export default createContext<Context>({});
+const AppContext = createContext<Partial<ContextProps>>({});
+
+export { AppContext };

@@ -1,27 +1,18 @@
-import React, { useReducer, ReactNode } from "react";
-import Context from "./context";
-import { reducer } from "../reducer/reducer";
+import React, { ReactNode, useState } from "react";
+import { AppContext } from "./context";
+import { Recipe } from "../types/types";
 
 type Props = {
   children: ReactNode;
 };
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, { recipes: [] });
-
-  const fetchRecipes = async (): Promise<void> => {
-    const recipes = await fetch(
-      "https://imhungryy.herokuapp.com/recipes/search?includedIngredient=tomato",
-      {
-        method: "GET",
-      }
-    );
-  };
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   return (
-    <Context.Provider value={{ fetchRecipes: fetchRecipes }}>
+    <AppContext.Provider value={{ recipes: recipes }}>
       {children}
-    </Context.Provider>
+    </AppContext.Provider>
   );
 };
 
