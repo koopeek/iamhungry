@@ -1,25 +1,19 @@
-import React, { useReducer, ReactNode } from "react";
-import Context from "./context";
-import { reducer } from "../reducer/reducer";
+import React, { ReactNode, useState } from "react";
+import Context, { Recipe } from "./context";
 
 type Props = {
   children: ReactNode;
 };
 
 const ContextProvider: React.FC<Props> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, { recipes: [] });
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   const fetchRecipes = async (): Promise<void> => {
-    const recipes = await fetch(
-      "https://imhungryy.herokuapp.com/recipes/search?includedIngredient=tomato",
-      {
-        method: "GET",
-      }
-    );
+    throw new Error("Not implemented.");
   };
 
   return (
-    <Context.Provider value={{ fetchRecipes: fetchRecipes }}>
+    <Context.Provider value={{ recipes: recipes, fetchRecipes: fetchRecipes }}>
       {children}
     </Context.Provider>
   );
