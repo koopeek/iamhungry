@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
-import Context, { Recipe } from "./context";
+import { AppContext } from "./context";
+import { Recipe } from "../types/types";
 
 type Props = {
   children: ReactNode;
@@ -8,14 +9,10 @@ type Props = {
 const ContextProvider: React.FC<Props> = ({ children }) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
-  const fetchRecipes = async (): Promise<void> => {
-    throw new Error("Not implemented.");
-  };
-
   return (
-    <Context.Provider value={{ recipes: recipes, fetchRecipes: fetchRecipes }}>
+    <AppContext.Provider value={{ recipes: recipes }}>
       {children}
-    </Context.Provider>
+    </AppContext.Provider>
   );
 };
 
