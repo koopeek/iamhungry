@@ -3,7 +3,7 @@ import { Recipe } from "../types/types";
 
 type ContextProps = {
   recipes: Recipe[];
-  fetchRecipes: () => Promise<void>;
+  fetchRecipes: (ingredient: string) => Promise<void>;
 };
 
 const AppContext = createContext<Partial<ContextProps>>({});

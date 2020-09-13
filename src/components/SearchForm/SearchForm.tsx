@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FormInput } from "../FormInput/FormInput";
 import "./SearchForm.scss";
+import { AppContext } from "../../context/context"
 
 const SearchForm: React.FC = () => {
   const [name, setName] = useState<string>("");
+
+  const {fetchRecipes} = useContext(AppContext);
 
   return (
     <form className="searchForm">
@@ -16,6 +19,9 @@ const SearchForm: React.FC = () => {
           value={name}
           onChange={setName}
         />
+      </div>
+      <div>
+        <input type="submit" onSubmit={() => fetchRecipes}></input>
       </div>
     </form>
   );
