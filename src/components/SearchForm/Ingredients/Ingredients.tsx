@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IngredientsList } from "../IngredientsList/IngredientsList";
 
 type Props = {
   ingredients: string[];
@@ -18,11 +19,7 @@ export const Ingredients: React.FC<Props> = ({ ingredients, handleChange }) => {
 
   return (
     <div>
-      <ul>
-        {ingredients.map((ingredient) => (
-          <li key={ingredient}>{ingredient}</li>
-        ))}
-      </ul>
+      <IngredientsList ingredients={ingredients} />
       <input
         type="text"
         value={value}

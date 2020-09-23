@@ -1,11 +1,15 @@
 import { createContext } from "react";
 import { Recipe } from "../types/types";
 
-type ContextProps = {
-  recipes: Recipe[];
-  fetchRecipes: (ingredient: string) => Promise<void>;
+export type FetchRecipesArgs = {
+  name?: string;
+  includedIngredients: string[];
+  excludedIngredients: string[];
 };
 
-const AppContext = createContext<Partial<ContextProps>>({});
+type ContextProps = {
+  recipes: Recipe[];
+  fetchRecipes: (obj: FetchRecipesArgs) => Promise<void>;
+};
 
-export { AppContext };
+export const AppContext = createContext<Partial<ContextProps>>({});

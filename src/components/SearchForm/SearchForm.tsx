@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../context/context";
 import { FormInput } from "../FormInput/FormInput";
 import { Ingredients } from "./Ingredients/Ingredients";
 import "./SearchForm.scss";
@@ -8,8 +9,16 @@ const SearchForm: React.FC = () => {
   const [includedIngredients, setIncludedIngredients] = useState<string[]>([]);
   const [excludedIngredients, setExcludedIngredients] = useState<string[]>([]);
 
+  const { fetchRecipes } = useContext(AppContext);
+
   const hangleSubmitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
+    fetchRecipes!({
+      name,
+      includedIngredients,
+      excludedIngredients,
+    });
   };
 
   return (
