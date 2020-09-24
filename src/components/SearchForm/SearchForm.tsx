@@ -1,24 +1,22 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/context";
 import { FormInput } from "../FormInput/FormInput";
-import { Ingredients } from "./Ingredients/Ingredients";
+import { SearchFormIngredients } from "./SearchFormIngredients/SearchFormIngredients";
 import "./SearchForm.scss";
 
-const SearchForm: React.FC = () => {
+export const SearchForm: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [includedIngredients, setIncludedIngredients] = useState<string[]>([]);
   const [excludedIngredients, setExcludedIngredients] = useState<string[]>([]);
 
-  const { fetchRecipes } = useContext(AppContext);
+  const { getRecipes } = useContext(AppContext);
 
   const hangleSubmitForm = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    fetchRecipes!({
-      name,
-      includedIngredients,
-      excludedIngredients,
-    });
+    if (getRecipes) {
+      getRecipes({ name, includedIngredients, excludedIngredients });
+    }
   };
 
   return (
@@ -34,11 +32,11 @@ const SearchForm: React.FC = () => {
         />
       </div>
       <div className="searchForm__ingredients">
-        <Ingredients
+        <SearchFormIngredients
           ingredients={includedIngredients}
           handleChange={setIncludedIngredients}
         />
-        <Ingredients
+        <SearchFormIngredients
           ingredients={excludedIngredients}
           handleChange={setExcludedIngredients}
         />
@@ -50,4 +48,4 @@ const SearchForm: React.FC = () => {
   );
 };
 
-export { SearchForm };
+SearchForm.displayName = "SearchForm";

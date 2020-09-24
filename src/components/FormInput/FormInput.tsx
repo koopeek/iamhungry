@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./FormInput.scss";
 
 type Props = {
@@ -19,16 +19,19 @@ const FormInput: React.FC<Props> = ({
   onChange,
 }) => {
   return (
-    <Fragment>
-      <label htmlFor={name}>{label}</label>
+    <div className="form-input">
+      <label htmlFor={name} className="form-input__label">
+        {label}
+      </label>
       <input
         name={name}
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
+        className="form-input__field"
       />
-    </Fragment>
+    </div>
   );
 };
 
