@@ -1,19 +1,20 @@
-import React from "react";
-import { ContextProvider } from "./context/ContextProvider";
+import React, { useState } from "react";
 import { SearchForm } from "./components/SearchForm/SearchForm";
+import { Recipe } from "./types/types";
 import "./App.scss";
 
 const App: React.FC = () => {
+
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+
   return (
-    <ContextProvider>
       <div className="wrapper-app">
         <div className="app">
           <div className="app__searchForm">
-            <SearchForm />
+            <SearchForm setRecipes={setRecipes} />
           </div>
         </div>
       </div>
-    </ContextProvider>
   );
 };
 

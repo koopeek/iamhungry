@@ -1,26 +1,31 @@
-import React, { useState, useContext } from "react";
-import { AppContext } from "../../context/context";
+import React, { useState } from "react";
+import { Recipe } from "../../types/types";
 import { FormInput } from "../FormInput/FormInput";
 import { SearchFormIngredients } from "./SearchFormIngredients/SearchFormIngredients";
+import { fetchRecipes } from "../../services/api";
 import "./SearchForm.scss";
 
-export const SearchForm: React.FC = () => {
+type Props = {
+  setRecipes: React.Dispatch<React.SetStateAction<Recipe[]>>;
+};
+
+export const SearchForm: React.FC<Props> = ({ setRecipes }) => {
   const [name, setName] = useState<string>("");
   const [includedIngredients, setIncludedIngredients] = useState<string[]>([]);
   const [excludedIngredients, setExcludedIngredients] = useState<string[]>([]);
 
-  const { getRecipes } = useContext(AppContext);
-
-  const hangleSubmitForm = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    if (getRecipes) {
-      getRecipes({ name, includedIngredients, excludedIngredients });
+    const recipes = await  fetchRecipes({ name, includedIngredients, excludedIngredients });
+
+    if (recipes) {
+        setRecipes(recipes);
     }
   };
 
   return (
-    <form onSubmit={hangleSubmitForm} className="searchForm">
+    <form onSubmit={handleSubmitForm} className="searchForm">
       <div className="searchForm__nameInput">
         <FormInput
           name="name"
@@ -41,8 +46,8 @@ export const SearchForm: React.FC = () => {
           handleChange={setExcludedIngredients}
         />
       </div>
-      <div>
-        <button type="submit">Szukaj</button>
+      <div className="searchForm__submitButton-wrapper">
+        <button className="searchForm__submitButton" type="submit">Search</button>
       </div>
     </form>
   );

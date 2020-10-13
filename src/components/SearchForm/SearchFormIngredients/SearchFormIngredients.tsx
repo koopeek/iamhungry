@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FormInput } from "../../FormInput/FormInput";
 import { SearchFormIngredientsList } from "./SearchFormIngredientsList/SearchFormIngredientsList";
+import { FaPlus } from 'react-icons/fa';
 import "./SearchFormIngredients.scss";
 
 type Props = {
@@ -14,11 +15,7 @@ export const SearchFormIngredients: React.FC<Props> = ({
 }) => {
   const [value, setValue] = useState<string>("");
 
-  const handleAddIngredient = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
-    e.preventDefault();
-
+  const handleAddIngredient = (): void => {
     if (value && !ingredients.includes(value)) {
       handleChange([...ingredients, value]);
       setValue("");
@@ -33,12 +30,16 @@ export const SearchFormIngredients: React.FC<Props> = ({
             name="ingredient"
             type="text"
             label="Included ingredients"
-            placeholder="Tomato..."
+            placeholder="Some ingredient name"
             value={value}
             onChange={setValue}
           />
         </div>
-        <button onClick={(e) => handleAddIngredient(e)}>Dodaj</button>
+        <div className="search-form-ingredients__form__button-wrapper">
+          <button type="button" className="search-form-ingredients__form__button" onClick={() => handleAddIngredient()}>
+            <FaPlus />
+          </button>
+        </div>
       </div>
       <div className="search-form-ingredients__list">
         <SearchFormIngredientsList ingredients={ingredients} />
