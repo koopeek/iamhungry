@@ -18,22 +18,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.wrapper-app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .app {
-  width: 95%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 
-  &__searchForm {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  min-height: 100vh;
+
+  &__leftPanel {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
+
+  &__rightPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darken(#F7F8FA, 3);
+    border: 1px solid #F7F8FA;
+  }
+
 }
+

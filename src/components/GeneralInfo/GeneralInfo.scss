@@ -1,0 +1,10 @@
+.generalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__logo {
+    margin-top: 30px;
+  }
+
+}
