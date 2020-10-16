@@ -15,7 +15,7 @@ const App: React.FC = () => {
             <GeneralInfo />
         </div>
         <div className="app__rightPanel">
-            <Steps currentStep={currentStep} />
+            <Steps currentStep={currentStep} setCurrentStep={setCurrentStep} recipes={recipes} setRecipes={setRecipes} />
         </div>
       </div>
   );

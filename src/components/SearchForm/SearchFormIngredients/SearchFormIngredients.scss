@@ -1,31 +1,18 @@
 .search-form-ingredients {
+
   display: flex;
-  flex-direction: column;
   width: 100%;
 
   &__form {
+
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    width: 100%;
     gap: 5px;
 
     &__field {
-      width: 95%;
-    }
-
-    &__button-wrapper {
-      display: flex;
-      align-items: center;
-      width: 5%;
-    }
-
-    &__button {
-      border-radius: 5px;
       width: 100%;
-      color: #2663D1;
-      border: 1px solid #2663D1;
-      background-color: #FFFFFF;
-      padding: 5px 5px;
-      cursor: pointer;
     }
+
   }
 }

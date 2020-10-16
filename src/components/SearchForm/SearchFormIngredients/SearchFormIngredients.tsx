@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { FormInput } from "../../FormInput/FormInput";
 import { SearchFormIngredientsList } from "./SearchFormIngredientsList/SearchFormIngredientsList";
-import { FaPlus } from 'react-icons/fa';
 import "./SearchFormIngredients.scss";
+import {Recipe} from "../../../types/types";
 
 type Props = {
-  ingredients: string[];
-  handleChange: React.Dispatch<React.SetStateAction<string[]>>;
+  label: string,
+  value: string,
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const SearchFormIngredients: React.FC<Props> = ({
-  ingredients,
-  handleChange,
-}) => {
-  const [value, setValue] = useState<string>("");
-
-  const handleAddIngredient = (): void => {
-    if (value && !ingredients.includes(value)) {
-      handleChange([...ingredients, value]);
-      setValue("");
-    }
-  };
+export const SearchFormIngredients: React.FC<Props> = ({label, value, setValue}) => {
 
   return (
     <div className="search-form-ingredients">
@@ -29,21 +19,16 @@ export const SearchFormIngredients: React.FC<Props> = ({
           <FormInput
             name="ingredient"
             type="text"
-            label="Included ingredients"
-            placeholder="Some ingredient name"
+            label={label}
+            placeholder="E.g tomato, corn, cheese"
             value={value}
             onChange={setValue}
           />
         </div>
-        <div className="search-form-ingredients__form__button-wrapper">
-          <button type="button" className="search-form-ingredients__form__button" onClick={() => handleAddIngredient()}>
-            <FaPlus />
-          </button>
-        </div>
       </div>
-      <div className="search-form-ingredients__list">
-        <SearchFormIngredientsList ingredients={ingredients} />
-      </div>
+      {/*<div className="search-form-ingredients__list">*/}
+      {/*  <SearchFormIngredientsList ingredients={ingredients} />*/}
+      {/*</div>*/}
     </div>
   );
 };
