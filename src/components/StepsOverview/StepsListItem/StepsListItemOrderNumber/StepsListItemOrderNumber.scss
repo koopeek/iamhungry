@@ -1,0 +1,38 @@
+.stepsListItemOrderNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+
+  &--passed {
+    border: 1.9px solid #4CAF50;
+    background-color: #4CAF50;
+  }
+
+  &--current {
+    border: 1.9px solid #2C88FF;
+  }
+
+  &--upcomming {
+    border: 1.9px solid #AAAAAA;
+  }
+
+  &__number {
+    padding: 5px;
+
+    &--passed {
+      color: #FFFFFF;
+    }
+
+    &--current {
+      color: #2C88FF;
+    }
+
+    &--upcomming {
+      color: #AAAAAA;
+    }
+  }
+
+}

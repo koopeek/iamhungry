@@ -2,13 +2,15 @@ import React from 'react';
 import { StepsOverview } from "../StepsOverview/StepsOverview";
 import './GeneralInfo.scss';
 
-type Props = { }
+type Props = {
+    currentStep: number
+}
 
-export const GeneralInfo: React.FC<Props> = (props: Props) => {
+export const GeneralInfo: React.FC<Props> = ({ currentStep }) => {
     return (
         <div className="generalInfo">
             <h1 className="generalInfo__logo">I AM HUNGRY</h1>
-            <StepsOverview />
+            <StepsOverview currentStep={currentStep} />
         </div>
     );
 }

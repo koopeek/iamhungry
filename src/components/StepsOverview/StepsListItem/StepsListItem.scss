@@ -1,0 +1,18 @@
+.stepsListItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &__name {
+    color: darken(#AAAAAA, 15);
+    text-transform: uppercase;
+
+    &--current {
+      color: #2663D1;
+    }
+  }
+
+  &__arrow {
+    color: darken(#2663D1, 20);
+  }
+}

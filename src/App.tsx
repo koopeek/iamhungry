@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
       <div className="app">
         <div className="app__leftPanel">
-            <GeneralInfo />
+            <GeneralInfo currentStep={currentStep} />
         </div>
         <div className="app__rightPanel">
             <Steps currentStep={currentStep} setCurrentStep={setCurrentStep} recipes={recipes} setRecipes={setRecipes} />

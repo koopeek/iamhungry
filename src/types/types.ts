@@ -3,3 +3,9 @@ export type Recipe = {
   name: string;
   imageUrl: string;
 };
+
+export type Step = {
+  name: string,
+  orderNumber: number
+};
+

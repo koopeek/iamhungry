@@ -1,3 +1,5 @@
+import { Step } from '../types/types';
+
 export const diets: string[] = [
   "gluten free",
   "ketogenic",
@@ -40,4 +42,23 @@ export const mealTypes: string[] = [
   "fingerfood",
   "snack",
   "drink",
+];
+
+export const STEPS: Array<Step> = [
+  {
+    name: 'Fill in the form',
+    orderNumber: 1
+  },
+  {
+    name: 'Select recipe',
+    orderNumber: 2
+  },
+  {
+    name: 'Show ingredients',
+    orderNumber: 3
+  },
+  {
+    name: 'Show preparation steps',
+    orderNumber: 4
+  }
 ];
