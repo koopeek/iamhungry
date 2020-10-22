@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Recipe } from "./types/types";
 import { GeneralInfo } from "./components/GeneralInfo/GeneralInfo";
+import { Steps } from "./components/Steps/Steps";
 import "./App.scss";
-import {Steps} from "./components/Steps/Steps";
 
 const App: React.FC = () => {
 

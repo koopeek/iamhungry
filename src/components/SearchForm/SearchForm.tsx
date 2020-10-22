@@ -21,7 +21,7 @@ export const SearchForm: React.FC<Props> = ({ setRecipes, setCurrentStep }) => {
     const includedIngredientsSplitted = includedIngredients.split(',').map(el => el.trim());
     const excludedIngredientsSplitted = excludedIngredients.split(',').map(el => el.trim());
 
-    const recipes = await  fetchRecipes({ name, includedIngredients: includedIngredientsSplitted, excludedIngredients: excludedIngredientsSplitted });
+    const recipes = await fetchRecipes({ name, includedIngredients: includedIngredientsSplitted, excludedIngredients: excludedIngredientsSplitted });
 
     if (recipes) {
         setRecipes(recipes);

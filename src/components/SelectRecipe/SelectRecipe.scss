@@ -1,0 +1,12 @@
+.selectRecipe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: 80%;
+  gap: 10px;
+
+  &__list {
+    margin-top: 50px;
+  }
+}

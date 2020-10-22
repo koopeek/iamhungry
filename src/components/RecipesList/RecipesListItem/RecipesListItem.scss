@@ -1,0 +1,17 @@
+.recipesListItem {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    height: 170px;
+    border-radius: 5px;
+  }
+
+  &__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60px;
+  }
+}

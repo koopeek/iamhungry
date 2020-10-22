@@ -1,4 +1,4 @@
-import { Step } from '../types/types';
+import { Recipe, Step } from '../types/types';
 
 export const diets: string[] = [
   "gluten free",
@@ -62,3 +62,31 @@ export const STEPS: Array<Step> = [
     orderNumber: 4
   }
 ];
+
+export const RECIPES_MOCK: Recipe[] = [
+  {
+    id: "59221302",
+    imageUrl: "https://spoonacular.com/recipeImages/591302-312x231.jpg",
+    name: "Summer Vegetable Tian"
+  },
+  {
+    id: "59331302",
+    imageUrl: "https://spoonacular.com/recipeImages/591302-312x231.jpg",
+    name: "Summer Vegetable Tian"
+  },
+  {
+    id: "59331302",
+    imageUrl: "https://spoonacular.com/recipeImages/591302-312x231.jpg",
+    name: "Summer Vegetable Tian"
+  },
+  {
+    id: "59133302",
+    imageUrl: "https://spoonacular.com/recipeImages/591302-312x231.jpg",
+    name: "Summer Vegetable Tian"
+  },
+  {
+    id: "59130233",
+    imageUrl: "https://spoonacular.com/recipeImages/591302-312x231.jpg",
+    name: "Summer Vegetable Tian"
+  },
+]

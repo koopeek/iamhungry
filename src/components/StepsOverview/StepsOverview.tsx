@@ -13,14 +13,13 @@ export const StepsOverview: React.FC<Props> = ({ currentStep }) => {
             <ul className="stepsOverview__steps-list">
                 {
                     STEPS.map(step => (
-                        <li className="stepsOverview__steps-list-item">
+                        <li key={step.orderNumber} className="stepsOverview__steps-list-item">
                             <StepsListItem step={step} currentStep={currentStep} />
                         </li>
                     ))
                 }
             </ul>
         </div>
-
     );
 }
 

@@ -17,5 +17,9 @@ export const fetchRecipes = async (
     .then((data) => data.json())
     .catch((err) => console.log(err));
 
-  return recipes;
+  if (recipes.recipes) {
+    return recipes.recipes;
+  }
+
+  return [];
 };
