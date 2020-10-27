@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Recipe } from "../../types/types";
 import { FormInput } from "../FormInput/FormInput";
-import { SearchFormIngredients } from "./SearchFormIngredients/SearchFormIngredients";
 import { fetchRecipes } from "../../services/api";
 import "./SearchForm.scss";
 
@@ -48,18 +47,22 @@ export const SearchForm: React.FC<Props> = ({ setRecipes, setCurrentStep }) => {
                   />
               </div>
 
-              {/*<h4>INGREDIENTS</h4>*/}
-
               <div className="searchForm__ingredients">
-                  <SearchFormIngredients
+                  <FormInput
+                      name="includedIngredients"
+                      type="text"
                       label="Included ingredients"
+                      placeholder="E.g tomato, corn, cheese"
                       value={includedIngredients}
-                      setValue={setIncludedIngredients}
+                      onChange={setIncludedIngredients}
                   />
-                  <SearchFormIngredients
+                  <FormInput
+                      name="excludedIngredients"
+                      type="text"
                       label="Excluded ingredients"
+                      placeholder="E.g tomato, corn, cheese"
                       value={excludedIngredients}
-                      setValue={setExcludedIngredients}
+                      onChange={setExcludedIngredients}
                   />
               </div>
               <div className="searchForm__submitButton-wrapper">

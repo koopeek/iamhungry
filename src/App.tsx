@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Recipe } from "./types/types";
-import { GeneralInfo } from "./components/GeneralInfo/GeneralInfo";
-import { Steps } from "./components/Steps/Steps";
+import {Header} from "./components/Header/Header";
+import { Content } from "./components/Content/Content";
 import "./App.scss";
 
 const App: React.FC = () => {
@@ -11,12 +11,10 @@ const App: React.FC = () => {
 
   return (
       <div className="app">
-        <div className="app__leftPanel">
-            <GeneralInfo currentStep={currentStep} />
-        </div>
-        <div className="app__rightPanel">
-            <Steps currentStep={currentStep} setCurrentStep={setCurrentStep} recipes={recipes} setRecipes={setRecipes} />
-        </div>
+          <Header />
+          <main className="app__content">
+              <Content recipes={recipes} setCurrentStep={setCurrentStep} currentStep={currentStep} setRecipes={setRecipes} />
+          </main>
       </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { SearchForm } from "../SearchForm/SearchForm";
 import {SelectRecipe} from "../SelectRecipe/SelectRecipe";
 import {Recipe} from "../../types/types";
@@ -10,7 +10,8 @@ type Props = {
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const Steps: React.FC<Props> = ( {currentStep, setCurrentStep, recipes, setRecipes} ) => {
+export const CurrentStepContent: React.FC<Props> = ({ currentStep, setCurrentStep, recipes, setRecipes }) => {
+
     switch (currentStep) {
         case 1:
             return <SearchForm setCurrentStep={setCurrentStep} setRecipes={setRecipes} />
@@ -21,4 +22,4 @@ export const Steps: React.FC<Props> = ( {currentStep, setCurrentStep, recipes, s
     }
 }
 
-Steps.displayName = 'Steps';
+CurrentStepContent.displayName = 'CurrentStepContent';

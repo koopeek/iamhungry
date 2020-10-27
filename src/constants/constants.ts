@@ -54,12 +54,8 @@ export const STEPS: Array<Step> = [
     orderNumber: 2
   },
   {
-    name: 'Show ingredients',
+    name: 'Show ingredients and preparation steps',
     orderNumber: 3
-  },
-  {
-    name: 'Show preparation steps',
-    orderNumber: 4
   }
 ];
 

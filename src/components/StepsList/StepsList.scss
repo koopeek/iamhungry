@@ -1,0 +1,15 @@
+.stepsList {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border: 1px solid #aaaaaa;
+
+  &__list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+}
