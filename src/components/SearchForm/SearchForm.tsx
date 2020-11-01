@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { FormEvent } from "react";
 import { Recipe } from "../../types/types";
-import { FormInput } from "../FormInput/FormInput";
+import { Field, Form } from "react-final-form";
+import arrayMutators from "final-form-arrays";
+import { FieldArray } from "react-final-form-arrays";
+import { Button } from "../Button/Button";
+import { Icon, IconTypes } from "../Icon/Icon";
 import { fetchRecipes } from "../../services/api";
 import "./SearchForm.scss";
 
@@ -9,69 +13,107 @@ type Props = {
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
+interface FormValues extends FormEvent<HTMLFormElement> {
+  includedIngredients: string[];
+}
+
 export const SearchForm: React.FC<Props> = ({ setRecipes, setCurrentStep }) => {
-  const [name, setName] = useState<string>("");
-  const [includedIngredients, setIncludedIngredients] = useState<string>("");
-  const [excludedIngredients, setExcludedIngredients] = useState<string>("");
-
-  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-
-    const includedIngredientsSplitted = includedIngredients.split(',').map(el => el.trim());
-    const excludedIngredientsSplitted = excludedIngredients.split(',').map(el => el.trim());
-
-    const recipes = await fetchRecipes({ name, includedIngredients: includedIngredientsSplitted, excludedIngredients: excludedIngredientsSplitted });
+  const handleSubmitForm = async ({ includedIngredients }: FormValues) => {
+    const recipes = await fetchRecipes({ includedIngredients });
 
     if (recipes) {
-        setRecipes(recipes);
-        setCurrentStep(2);
+      setRecipes(recipes);
+      setCurrentStep(2);
     }
   };
 
+  const isAtLeastOneIncludedIngredientProvided = ({
+    includedIngredients,
+  }: FormValues): boolean => {
+    if (includedIngredients && includedIngredients.length > 0) {
+      return includedIngredients.filter((ingredient) => ingredient).length > 0;
+    }
+    return false;
+  };
+
+  const initialIncludedIngredients = [""];
+
   return (
-      <div className="searchForm-wrapper">
+    <div className="searchForm-wrapper">
+      <h3>WHAT DO YOU WANT TO EAT TODAY?</h3>
 
-          <h2>FILL IN THE FORM</h2>
+      <Form
+        onSubmit={handleSubmitForm}
+        mutators={{
+          ...arrayMutators,
+        }}
+        render={({
+          handleSubmit,
+          form: {
+            mutators: { push },
+          },
+          values,
+        }) => {
+          return (
+            <form onSubmit={handleSubmit} className="searchForm">
+              <div className="searchForm__includedIngredients">
+                <p className="searchForm__includedIngredients__title">
+                  Included ingredients
+                  <span className="highlightedInformation">
+                    (at least one required)
+                  </span>
+                </p>
 
-          <p>Let us know what you want to eat by filling in the form below.</p>
-
-          <form onSubmit={handleSubmitForm} className="searchForm">
-              <div className="searchForm__nameInput">
-                  <FormInput
-                      name="name"
-                      type="text"
-                      label="Meal name"
-                      placeholder="Enter meal name..."
-                      value={name}
-                      onChange={setName}
+                <div className="searchForm__includedIngredients__content">
+                  <Button
+                    type="button"
+                    textContent="Add ingredient name"
+                    disabled={false}
+                    handleClick={() => push("includedIngredients", undefined)}
                   />
-              </div>
-
-              <div className="searchForm__ingredients">
-                  <FormInput
+                  <div className="searchForm__includedIngredients__content__fieldArray">
+                    <FieldArray
                       name="includedIngredients"
-                      type="text"
-                      label="Included ingredients"
-                      placeholder="E.g tomato, corn, cheese"
-                      value={includedIngredients}
-                      onChange={setIncludedIngredients}
-                  />
-                  <FormInput
-                      name="excludedIngredients"
-                      type="text"
-                      label="Excluded ingredients"
-                      placeholder="E.g tomato, corn, cheese"
-                      value={excludedIngredients}
-                      onChange={setExcludedIngredients}
-                  />
+                      initialValue={initialIncludedIngredients}
+                    >
+                      {({ fields }) =>
+                        fields.map((name, index) => (
+                          <div
+                            key={name}
+                            className="searchForm__includedIngredients__content__fieldArray__item"
+                          >
+                            <Field
+                              name={name}
+                              component="input"
+                              placeholder="E.g. chicken, tomato, potato..."
+                              className="input"
+                            />
+                            {values.includedIngredients &&
+                            values.includedIngredients.length > 1 ? (
+                              <Icon
+                                iconType={IconTypes.REMOVE}
+                                handleClick={() => fields.remove(index)}
+                              />
+                            ) : null}
+                          </div>
+                        ))
+                      }
+                    </FieldArray>
+                  </div>
+                </div>
               </div>
-              <div className="searchForm__submitButton-wrapper">
-                  <button className="searchForm__submitButton" type="submit">Search</button>
+              <div className="searchForm__buttons">
+                <Button
+                  type="submit"
+                  disabled={!isAtLeastOneIncludedIngredientProvided(values)}
+                  textContent="Search"
+                />
               </div>
-          </form>
-      </div>
-
-
+            </form>
+          );
+        }}
+      />
+    </div>
   );
 };
 
