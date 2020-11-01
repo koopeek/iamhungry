@@ -1,0 +1,18 @@
+.button {
+  padding: 7px 5px;
+  border-radius: 3px;
+  border: 1px solid #fb8610;
+  color: #fb8610;
+  background-color: #FFFFFF;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:disabled {
+  border: 1px solid lighten(#fb8610, 20);
+  color: lighten(#fb8610, 20);
+  cursor: default;
+}
+
+

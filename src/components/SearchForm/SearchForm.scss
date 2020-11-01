@@ -2,13 +2,12 @@
 .searchForm-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   height: 80%;
   gap: 10px;
 }
 
 .searchForm {
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -17,39 +16,66 @@
   width: 100%;
   margin-top: 20px;
   border-radius: 10px;
-
-  &__nameInput {
-   width: 100%;
-  }
-
-  &__ingredients {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-  }
-
-  &__submitButton-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  &__submitButton {
-    padding: 7px 25px;
-    border-radius: 3px;
-    border: 1px solid #2663D1;
-    color: #2663D1;
-    background-color: #FFFFFF;
-    cursor: pointer;
-  }
-
-  &__submitButton:hover {
-
-    border: 1.5px solid #2663D1;
-    transition: border 0.1s;
-
-  }
-
 }
+
+.searchForm__includedIngredients {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__content {
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &__fieldArray {
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+      }
+
+    }
+
+  }
+}
+
+.input {
+  width: 300px;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-indent: 5px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.searchForm__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.highlightedInformation {
+  padding-bottom: 2px;
+  border-bottom: 2px dashed #fb8610;
+}
+
+
